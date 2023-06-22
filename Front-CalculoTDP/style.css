@@ -18,11 +18,13 @@ body {
 
 .square {
     background-color: #222;
-    border-radius: 10px;
+    border-radius: 15px;
     padding: 20px;
     width: 400px; /* Ajuste o tamanho do contêiner conforme necessário */
-    box-shadow: 0 0 10px rgba(251, 248, 248, 0.1);
-}
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Adicione a sombra desejada */
+    border: 4px solid rgba(51, 0, 255, 0.248);
+  }
+  
 
 .field {
     flex-basis: calc(50% - 10px);
