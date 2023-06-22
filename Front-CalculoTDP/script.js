@@ -2,52 +2,14 @@
 var processadores = [
   "Intel Core i5-11600K",
   "Intel Core i9-10900K",
-  "Intel Core i7-10700K",
-  "Intel Core i5-10400F",
-  "Intel Core i7-9700K",
-  "Intel Core i9-12900K",
-  "Intel Core i7-12700K",
-  "Intel Core i5-12600K",
-  "Intel Core i9-11900KF",
-  "Intel Core i7-11700KF",
-  "Intel Core i9-10900KF",
-  "Intel Core i7-10700KF",
-  "Intel Core i5-10400",
-  "Intel Core i7-9700KF",
-  "AMD Ryzen 9 5950X",
-  "AMD Ryzen 9 5900X",
-  "AMD Ryzen 7 5800X",
-  "AMD Ryzen 5 5600X",
-  "Intel Core i5-10600K",
-  "Intel Core i9-10850K",
-  "AMD Ryzen 7 3700X",
-  "AMD Ryzen 5 3600X",
-  "AMD Ryzen 9 5900HX",
-  "AMD Ryzen 7 5800HX",
-  "AMD Ryzen 5 5600H",
-  "AMD Ryzen 9 5950H",
-  "AMD Ryzen 7 3700XT",
-  "AMD Ryzen 5 3600XT",
-  "Xeon E3-1220 v3",
-  "Xeon E3-1230 v3",
-  "Xeon E5-2620 v4",
-  "Xeon E5-1650 v3",
-  "Xeon E5-2680 v4",
-  "Xeon E5-2690 v3",
-  "Xeon E3-1270 v5",
-  "Xeon E3-1230 v3",
-  "Xeon E5-2630 v4",
-  "Xeon E5-1660 v3",
+  // Resto do array...
 ];
 
 // Array com as GPUs disponíveis
 var gpus = [
   "NVIDIA GeForce RTX 3080",
   "AMD Radeon RX 6800 XT",
-  "NVIDIA GeForce RTX 3070",
-  "AMD Radeon RX 6700 XT",
-  "NVIDIA GeForce RTX 3060",
-  "AMD Radeon RX 6600 XT"
+  // Resto do array...
 ];
 
 var sugestoesProcessador = [];
@@ -215,3 +177,41 @@ function atualizarSugestaoSelecionada(inputId) {
   }
 }
 
+// Função para realizar a comunicação com o backend
+function enviarRequisicao() {
+  var processador = document.getElementById('cpu').value;
+  var gpu = document.getElementById('gpu').value;
+
+  // Construir o objeto com os dados para enviar ao backend
+  var dados = {
+    processador: processador,
+    gpu: gpu
+  };
+
+  // Realizar a requisição ao backend (substitua a URL pela URL do seu backend)
+  fetch('https://localhost:44384/api/ComputersCreate', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(dados)
+  })
+  .then(function(response) {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Erro na requisição');
+    }
+  })
+  .then(function(data) {
+    // Manipular a resposta do backend
+    console.log(data);
+  })
+  .catch(function(error) {
+    // Tratar erros da requisição
+    console.log(error);
+  });
+}
+
+// Evento para enviar a requisição ao backend quando o usuário clicar no botão
+document.getElementById('submit').addEventListener('click', enviarRequisicao);
