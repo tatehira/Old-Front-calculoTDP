@@ -38,6 +38,11 @@ body {
     color: #fff;
 }
 
+.hidden {
+    display: none;
+}
+
+
 .field input,
 .field select {
     width: 100%;
