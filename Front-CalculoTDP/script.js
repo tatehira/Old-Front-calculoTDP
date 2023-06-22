@@ -5,8 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
     const processadores = [
       "Intel Core i9-11900K",
-      "Intel Core i7-11700K",
-      // ... restante dos processadores
+      "Intel Core i7-11700K"
     ];
   
     input.addEventListener("input", function() {
@@ -47,19 +46,11 @@ document.addEventListener("DOMContentLoaded", function() {
             suggestions.innerHTML = "";
           }
           break;
+        case "Escape":
+          event.preventDefault();
+          suggestions.innerHTML = "";
+          break;
       }
-
-      const cpuInput = document.getElementById('cpu');
-
-      cpuInput.addEventListener('blur', () => {
-        clearSuggestions();
-      });
-      
-      function clearSuggestions() {
-        const suggestionsContainer = document.getElementById('suggestions');
-        suggestionsContainer.innerHTML = '';
-      }
-       
   
       matchingProcessadores.forEach((processador, index) => {
         processador.classList.toggle("selected", index === selectedProcessadorIndex);
