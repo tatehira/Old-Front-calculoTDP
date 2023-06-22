@@ -4,9 +4,61 @@ document.addEventListener("DOMContentLoaded", function() {
     let selectedProcessadorIndex = -1;
   
     const processadores = [
-      "Intel Core i9-11900K",
-      "Intel Core i7-11700K"
+        "Intel Core i9-11900K",
+        "Intel Core i7-11700K",
+        "Intel Core i5-11600K",
+        "Intel Core i9-10900K",
+        "Intel Core i7-10700K",
+        "Intel Core i5-10400F",
+        "Intel Core i7-9700K",
+        "Intel Core i9-12900K",
+        "Intel Core i7-12700K",
+        "Intel Core i5-12600K",
+        "Intel Core i9-11900KF",
+        "Intel Core i7-11700KF",
+        "Intel Core i9-10900KF",
+        "Intel Core i7-10700KF",
+        "Intel Core i5-10400",
+        "Intel Core i7-9700KF",
+        "AMD Ryzen 9 5950X",
+        "AMD Ryzen 9 5900X",
+        "AMD Ryzen 7 5800X",
+        "AMD Ryzen 5 5600X",
+        "Intel Core i5-10600K",
+        "Intel Core i9-10850K",
+        "AMD Ryzen 7 3700X",
+        "AMD Ryzen 5 3600X",
+        "AMD Ryzen 9 5900HX",
+        "AMD Ryzen 7 5800HX",
+        "AMD Ryzen 5 5600H",
+        "AMD Ryzen 9 5950H",
+        "AMD Ryzen 7 3700XT",
+        "AMD Ryzen 5 3600XT",
+        "Xeon E3-1220 v3",
+        "Xeon E3-1230 v3",
+        "Xeon E5-2620 v4",
+        "Xeon E5-1650 v3",
+        "Xeon E5-2680 v4",
+        "Xeon E5-2690 v3",
+        "Xeon E3-1270 v5",
+        "Xeon E3-1230 v3",
+        "Xeon E5-2630 v4",
+        "Xeon E5-1660 v3",
+        "Xeon E5-2683 v4"
     ];
+
+
+    const cpuInput = document.getElementById('cpu');
+
+    cpuInput.addEventListener('blur', () => {
+    clearSuggestions();
+    });
+
+    function clearSuggestions() {
+    const suggestionsContainer = document.getElementById('suggestions');
+    suggestionsContainer.innerHTML = '';
+    }
+
   
     input.addEventListener("input", function() {
       const query = input.value.trim().toLowerCase();
@@ -45,10 +97,6 @@ document.addEventListener("DOMContentLoaded", function() {
             input.value = selectedProcessador;
             suggestions.innerHTML = "";
           }
-          break;
-        case "Escape":
-          event.preventDefault();
-          suggestions.innerHTML = "";
           break;
       }
   
