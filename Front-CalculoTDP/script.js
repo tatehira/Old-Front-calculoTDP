@@ -76,8 +76,28 @@ function pesquisarGPU() {
   });
 }
 
+// Função para ocultar a lista de sugestões
+function ocultarSugestoes() {
+  document.getElementById('suggestions').innerHTML = '';
+}
+
 // Evento para chamar a função de pesquisa quando o usuário digitar no campo de processador
 document.getElementById('cpu').addEventListener('input', pesquisarProcessador);
 
 // Evento para chamar a função de pesquisa quando o usuário digitar no campo de GPU
 document.getElementById('gpu').addEventListener('input', pesquisarGPU);
+
+// Evento para ocultar a lista de sugestões quando o usuário clicar fora do campo de processador
+document.addEventListener('click', function(event) {
+  var cpuInput = document.getElementById('cpu');
+  if (event.target !== cpuInput) {
+      ocultarSugestoes();
+  }
+});
+
+// Evento para ocultar a lista de sugestões quando o usuário pressionar a tecla "Esc"
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+      ocultarSugestoes();
+  }
+});
