@@ -5,17 +5,23 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1>Calculadora de TDP</h1>
-
     <div class="container">
         <div class="square">
+            <h1>Calculadora de TDP</h1>
+            <div class="field field-wide-rotulo">
+                <label for="rotulo">Rótulo:</label>
+                <select id="rotulo" name="rotulo">
+                    <option value="0">Upgrade</option>
+                    <option value="1">Novo</option>
+                </select>
+            </div>
             <div class="main-fields">
-                <div class="field">
+                <div class="field field-wide">
                     <label for="cpu">Processador:</label>
                     <input type="text" id="cpu" name="cpu">
                 </div>
                 <div id="suggestions"></div>
-                <div class="field">
+                <div class="field field-wide">
                     <label for="gpu">Placa de vídeo:</label>
                     <input type="text" id="gpu" name="gpu">
                 </div>
@@ -53,17 +59,11 @@
                         <option value="3">ExtendedATX</option>
                     </select>
                 </div>
-                <div class="field">
-                    <label for="rotulo">Rótulo:</label>
-                    <select id="rotulo" name="rotulo">
-                        <option value="0">Upgrade</option>
-                        <option value="1">Novo</option>
-                    </select>
-                </div>
-                <div class="button-container">
-                    <button type="button" onclick="calcularTDP()">Calcular TDP</button>
-                </div>
             </div>
+            <div class="button-container">
+                <button type="button" id="calculateBtn">Calcular TDP</button>
+            </div>
+            <div id="resultado"></div>
         </div>
     </div>
 
