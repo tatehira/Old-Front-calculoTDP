@@ -13,7 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    height: 90vh;
 }
 
 .square {
@@ -90,9 +90,18 @@ li.selected {
 
 h1 {
     text-align: center;
-    margin-top: 100px;
+    margin-top: 50px;
     position: relative;
-    font-size: 50px; /* Tamanho da fonte grande */
+    font-size: 30px; /* Tamanho da fonte grande */
     font-weight: bold; /* Negrito */
     color: #ffffff; /* Cor em grafite */
+}
+
+.field-wide-rotulo {
+    width: 90px; /* Defina a largura desejada */
+}
+
+.field-wide #cpu,
+.field-wide #gpu {
+    width: 390px; /* Defina a largura desejada */
 }
