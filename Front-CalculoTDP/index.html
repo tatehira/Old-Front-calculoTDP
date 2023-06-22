@@ -9,56 +9,60 @@
 
     <div class="container">
         <div class="square">
-            <div class="field">
-                <label for="cpu">Processador:</label>
-                <input type="text" id="cpu" name="cpu">
+            <div class="main-fields">
+                <div class="field">
+                    <label for="cpu">Processador:</label>
+                    <input type="text" id="cpu" name="cpu">
+                </div>
+                <div id="suggestions"></div>
+                <div class="field">
+                    <label for="gpu">Placa de vídeo:</label>
+                    <input type="text" id="gpu" name="gpu">
+                </div>
             </div>
-            <div id="suggestions"></div>
-            <div class="field">
-                <label for="gpu">Placa de vídeo:</label>
-                <input type="text" id="gpu" name="gpu">
-            </div>
-            <div class="field">
-                <label for="ram">Memória RAM:</label>
-                <select id="ram" name="ram">
-                    <option value="0">Single Channel</option>
-                    <option value="1">Dual Channel</option>
-                    <option value="2">Tri Channel</option>
-                    <option value="3">Quad Channel</option>
-                </select>
-            </div>
-            <div class="field">
-                <label for="hdd">Tipo de HDD:</label>
-                <select id="hdd" name="hdd">
-                    <option value="0">HDD Desktop</option>
-                    <option value="1">HDD Notebook</option>
-                </select>
-            </div>
-            <div class="field">
-                <label for="ssd">Tipo de SSD:</label>
-                <select id="ssd" name="ssd">
-                    <option value="0">SATA</option>
-                    <option value="1">NVMe</option>
-                </select>
-            </div>
-            <div class="field">
-                <label for="motherboard">Placa mãe:</label>
-                <select id="motherboard" name="motherboard">
-                    <option value="0">MicroATX</option>
-                    <option value="1">MiniATX</option>
-                    <option value="2">ATX</option>
-                    <option value="3">ExtendedATX</option>
-                </select>
-            </div>
-            <div class="field">
-                <label for="rotulo">Rótulo:</label>
-                <select id="rotulo" name="rotulo">
-                    <option value="0">Upgrade</option>
-                    <option value="1">Novo</option>
-                </select>
-            </div>
-            <div class="button-container">
-                <button type="button" onclick="calcularTDP()">Calcular TDP</button>
+            <div class="side-fields">
+                <div class="field">
+                    <label for="ram">Memória RAM:</label>
+                    <select id="ram" name="ram">
+                        <option value="0">Single Channel</option>
+                        <option value="1">Dual Channel</option>
+                        <option value="2">Tri Channel</option>
+                        <option value="3">Quad Channel</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="hdd">Tipo de HDD:</label>
+                    <select id="hdd" name="hdd">
+                        <option value="0">HDD Desktop</option>
+                        <option value="1">HDD Notebook</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="ssd">Tipo de SSD:</label>
+                    <select id="ssd" name="ssd">
+                        <option value="0">SATA</option>
+                        <option value="1">NVMe</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="motherboard">Placa mãe:</label>
+                    <select id="motherboard" name="motherboard">
+                        <option value="0">MicroATX</option>
+                        <option value="1">MiniATX</option>
+                        <option value="2">ATX</option>
+                        <option value="3">ExtendedATX</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="rotulo">Rótulo:</label>
+                    <select id="rotulo" name="rotulo">
+                        <option value="0">Upgrade</option>
+                        <option value="1">Novo</option>
+                    </select>
+                </div>
+                <div class="button-container">
+                    <button type="button" onclick="calcularTDP()">Calcular TDP</button>
+                </div>
             </div>
         </div>
     </div>
