@@ -1,44 +1,75 @@
-// Obtenha referência ao campo de texto de processador
-const cpuInput = document.getElementById('cpu');
-
-// Obtenha a lista completa de processadores
-const processadores = [
-    { Cpu: "Intel Core i9-11900K", TdpCpu: 125 },
-    { Cpu: "Intel Core i7-11700K", TdpCpu: 125 },
-    // ... restante dos processadores
-];
-
-// Função para filtrar a lista de processadores com base no texto digitado
-function filtrarProcessadores(texto) {
-    return processadores.filter(processador =>
-        processador.Cpu.toLowerCase().includes(texto.toLowerCase())
-    );
-}
-
-// Função para exibir os processadores filtrados na lista suspensa
-function exibirProcessadoresFiltrados(texto) {
-    const processadoresFiltrados = filtrarProcessadores(texto);
-
-    const selectCpu = document.getElementById('cpu');
-
-    // Remover todos os itens existentes da lista suspensa
-    while (selectCpu.firstChild) {
-        selectCpu.removeChild(selectCpu.firstChild);
-    }
-
-    // Criar e adicionar os novos itens filtrados na lista suspensa
-    processadoresFiltrados.forEach(processador => {
-        const option = document.createElement('option');
-        option.value = processador.Cpu;
-        option.textContent = processador.Cpu;
-        selectCpu.appendChild(option);
+document.addEventListener("DOMContentLoaded", function() {
+    const input = document.getElementById("cpu");
+    const suggestions = document.getElementById("suggestions");
+    let selectedProcessadorIndex = -1;
+  
+    const processadores = [
+      "Intel Core i9-11900K",
+      "Intel Core i7-11700K",
+      // ... restante dos processadores
+    ];
+  
+    input.addEventListener("input", function() {
+      const query = input.value.trim().toLowerCase();
+      const matchingProcessadores = processadores.filter(processador =>
+        processador.toLowerCase().startsWith(query)
+      );
+  
+      if (matchingProcessadores.length > 0) {
+        const suggestionsHTML = matchingProcessadores
+          .map((processador, index) =>
+            `<li class="${index === selectedProcessadorIndex ? 'selected' : ''}">${processador}</li>`
+          )
+          .join("");
+        suggestions.innerHTML = suggestionsHTML;
+      } else {
+        suggestions.innerHTML = "";
+      }
     });
-}
+  
+    input.addEventListener("keydown", function(event) {
+      const matchingProcessadores = suggestions.querySelectorAll("li");
+  
+      switch (event.key) {
+        case "ArrowUp":
+          event.preventDefault();
+          selectedProcessadorIndex = Math.max(selectedProcessadorIndex - 1, 0);
+          break;
+        case "ArrowDown":
+          event.preventDefault();
+          selectedProcessadorIndex = Math.min(selectedProcessadorIndex + 1, matchingProcessadores.length - 1);
+          break;
+        case "Enter":
+          if (selectedProcessadorIndex !== -1 && matchingProcessadores.length > 0) {
+            event.preventDefault();
+            const selectedProcessador = matchingProcessadores[selectedProcessadorIndex].textContent;
+            input.value = selectedProcessador;
+            suggestions.innerHTML = "";
+          }
+          break;
+      }
 
-// Adicionar um ouvinte de eventos de entrada ao campo de texto de processador
-cpuInput.addEventListener('input', function () {
-    exibirProcessadoresFiltrados(this.value);
-});
+      const cpuInput = document.getElementById('cpu');
 
-// Exibir todos os processadores no carregamento inicial da página
-exibirProcessadoresFiltrados('');
+      cpuInput.addEventListener('blur', () => {
+        clearSuggestions();
+      });
+      
+      function clearSuggestions() {
+        const suggestionsContainer = document.getElementById('suggestions');
+        suggestionsContainer.innerHTML = '';
+      }
+       
+  
+      matchingProcessadores.forEach((processador, index) => {
+        processador.classList.toggle("selected", index === selectedProcessadorIndex);
+      });
+    });
+  
+    suggestions.addEventListener("mousedown", function(event) {
+      const selectedProcessador = event.target.textContent;
+      input.value = selectedProcessador;
+      suggestions.innerHTML = "";
+    });
+  });
+  
